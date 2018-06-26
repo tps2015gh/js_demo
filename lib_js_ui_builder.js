@@ -6,6 +6,12 @@ var add_input = function(type, classname   ,  value){
     e.value = value 
     return e 
 }
+var add_ahref  = function(url,text){
+    var e  = document.createElement("a")
+    e.setAttribute("href",url)
+    e.text =  text 
+    return e 
+}
 var add_textNode = function(value)
 {
     var node = document.createTextNode(value);
@@ -68,4 +74,28 @@ var add_COL = function(col_style , elements ){
 var add_BR = function( ){
         var br = document.createElement("br");
         return br ;
+}
+
+var add_NAV = function(links , texts , active_index){
+    var nav = document.createElement("nav")
+    //nav.className = "navbar navbar-expand-sm bg-light navbar-light"
+    nav.className = "navbar navbar-expand-sm bg-dark navbar-dark"
+    var navbar = document.createElement("ul")
+    navbar.className = "navbar-nav"
+    nav.appendChild(navbar)
+    for (let index = 0; index < links.length; index++) {
+        var li = document.createElement("li")
+        if(active_index != index){
+            li.className = "nav-item "
+        }else{
+            li.className = "nav-item active"
+        }
+        var a = document.createElement("a")
+        a.className = "nav-link"
+        a.href = links[index]
+        a.text = texts[index]
+        li.appendChild(a)
+        navbar.appendChild(li)
+    }
+    return nav
 }

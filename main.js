@@ -8,8 +8,6 @@ var root = document.body ;
 root.style.marginLeft = "10px"
 root.style.paddingLeft = "10px"
 
-
-
 //=========================================================================
 var form1 = add_Form("index_do.php")
 var tx  = add_textNode("เลือกจังหวัด");
@@ -31,11 +29,25 @@ var sel_amphur = add_SELECT ( "sel_amphur"
 ]);
 
 //=========================================
-var banner = add_IMG("banner_nba.jpg");
+
+
+
+//=========================================
+var banner = add_IMG("banner_nb.jpg");
 banner.style.width = "100%"
 banner.style.height= "80px"
 form1.appendChild(banner)
-form1.appendChild(add_BR())
+//form1.appendChild(add_BR())
+//=========================================
+
+var nav = add_NAV(
+    ["#","tools.php","data.php"]
+    , ["Home","Tools","DATA"]
+    ,0 
+);
+console.log(nav)
+form1.appendChild(nav)
+
 
 //=========================================
 
@@ -51,7 +63,11 @@ form1.style.width = "80%";
 //=========================================
 row = add_ROW( 
     [   add_COL("col-sm-3" ,[add_textNode("เลือกอำเภอ")] )
-        ,add_COL("col-sm-5" ,[sel_amphur] )
+        ,add_COL("col-sm-5" ,
+            [sel_amphur
+            , add_ahref("https://th.wikipedia.org/wiki/%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD","เกี่ยวกับอำเภอ")
+            ]  
+        )
     ]
 )
 form1.appendChild(row)
