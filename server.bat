@@ -1,1 +1,1 @@
-start c:\xampp\php\php.exe -s localhost:8888
+start c:\xampp\php\php.exe -S localhost:8888
