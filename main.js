@@ -104,13 +104,27 @@ form1.appendChild(row_date)
 
 
 //=========================================
-var props_range = {"value":20,"max":50,"min":0,
-                    "onclick": function(ev){ alert('ok'); }
-                    }
-var row_range = add_row_input("col-sm-3","col-sm-4","ช่วงข้อมูล","range",props_range)
+var props_range = {"value":20,"max":50
+                    ,"min":0 , 
+                    "id":"range1"} 
+var events_range    =  {"change": 
+                            function(ev){ 
+                                var st = document.getElementById("tx_stat") 
+                                var val1 = document.getElementById("range1").value
+                                st.innerHTML = val1   
+                                //alert('ok'); 
+                            }
+                    };
+var row_range = add_row_input_event("col-sm-3","col-sm-4","ช่วงข้อมูล","range",props_range,events_range)
 form1.appendChild(row_range)
 
 
+
+var tx_stat = spell_element("span" ,"bg-info h2" )
+tx_stat.innerHTML = "สถานะ.." //document.getElementById("range1").value ;
+tx_stat.setAttribute("id","tx_stat")
+var row_stat   = add_row_nodes("col-sm-3","col-sm-4", "...", [ tx_stat ])
+form1.appendChild(row_stat)
 
 //=========================================
 

@@ -7,13 +7,14 @@ var add_input = function(type, classname   ,  value){
     return e 
 }
 var add_input_props = function(type, classname   ,  props){
+    console.log(props)
     var e = document.createElement("input")
     e.setAttribute("type",type)
     e.className = " form-control " + classname 
     for (var key in props) {
         if (e.hasOwnProperty(key)) {
             var val1 = props[key]
-            console.log(key + " -> " + val1);
+            console.log("set attribut of " +  key + " -> " + val1);
             e.setAttribute(key,val1)   
         }
     }    
@@ -163,5 +164,41 @@ var add_row_input = function(class_text , class_input, text , input_type, props)
          ]
      ) 
      return node_row
+ }
+
+ var add_row_input_event = function(class_text , class_input, text , input_type, props ,events){
+    var input1  =add_input_props(input_type,"form-control",props )
+    for (const [key, value] of Object.entries(events)) {
+        console.log(`${key} val== ${value}`); // "a 5", "b 7", "c 9"
+        var evname = key
+        var blkcode = value  
+        input1.addEventListener(evname , blkcode)  
+    }
+    
+    for (const [key, value] of Object.entries(props)) {
+        console.log(`ลงทะเบียน PROP : ${key} val== ${value}`); // "a 5", "b 7", "c 9" 
+        input1.setAttribute(key , value)  
+    }
+
+    var  node_row = add_ROW( 
+         [   add_COL(class_text ,[add_textNode(text)] )
+             ,add_COL(class_input ,
+                 [ input1
+                 ]  
+             )
+         ]
+     ) 
+     return node_row
+ }
+
+ var add_row_nodes = function( class_text , class_node , text,  nodes){
+ 
+    var  node_row = add_ROW( 
+        [   add_COL(class_text ,[add_textNode(text)] )
+            ,add_COL(class_node  ,  nodes )
+        ]
+    ) 
+    return node_row
+
  }
  
