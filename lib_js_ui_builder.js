@@ -6,6 +6,19 @@ var add_input = function(type, classname   ,  value){
     e.value = value 
     return e 
 }
+var add_input_props = function(type, classname   ,  props){
+    var e = document.createElement("input")
+    e.setAttribute("type",type)
+    e.className = " form-control " + classname 
+    for (var key in props) {
+        if (e.hasOwnProperty(key)) {
+            var val1 = props[key]
+            console.log(key + " -> " + val1);
+            e.setAttribute(key,val1)   
+        }
+    }    
+    return e 
+}
 var add_ahref  = function(url,text){
     var e  = document.createElement("a")
     e.setAttribute("href",url)
@@ -138,3 +151,17 @@ var add_NAV_DEFAULT = function(sitename, links , texts , active_index){
 
     return nav
 }
+
+var add_row_input = function(class_text , class_input, text , input_type, props){
+    var  node_row = add_ROW( 
+         [   add_COL(class_text ,[add_textNode(text)] )
+             ,add_COL(class_input ,
+                 [ add_input_props(input_type,"form-control",
+                             props )
+                 ]  
+             )
+         ]
+     ) 
+     return node_row
+ }
+ 

@@ -91,11 +91,45 @@ row = add_ROW(
 )
 form1.appendChild(row)
 
+//=========================================
+var props_idcard = {"placeholder":"เลขที่บัตร...","value":"","maxlength":5}
+var row_idcard = add_row_input("col-sm-3","col-sm-4","ป้อนเลขที่บัตร(ุ5อักษร)","text",props_idcard)
+
+form1.appendChild(row_idcard)
+
+//=========================================
+var props_date = {"placeholder":"วันที่รับของ"}
+var row_date = add_row_input("col-sm-3","col-sm-4","วันที่รับของ(ปี ค.ศ.)","date",props_date)
+form1.appendChild(row_date)
+
+
+//=========================================
+var props_range = {"value":20,"max":50,"min":0,
+                    "onclick": function(ev){ alert('ok'); }
+                    }
+var row_range = add_row_input("col-sm-3","col-sm-4","ช่วงข้อมูล","range",props_range)
+form1.appendChild(row_range)
+
+
+
+//=========================================
+
 form1.appendChild(add_BR())
+
+var row_bar = add_ROW(
+    [
+        add_COL("col-sm-12 text-center", [
+            spell_element("hr","")
+        ])
+    ]
+)
+form1.appendChild (row_bar)
 
 var row_submit = add_ROW(
     [
-        add_COL("col-sm-12 text-right",[ add_input("submit","btn btn-success", "ค้นข้อมูล") ])
+        add_COL("col-sm-4 text-center", [ add_textNode("เลือกกระบวนการ : ") ])
+        ,add_COL("col-sm-4 text-right",[ add_input("reset","btn btn-info", "คืนค่าเดิม") ])        
+        ,add_COL("col-sm-4 text-right",[ add_input("submit","btn btn-success", "ค้นข้อมูล") ])
     ]
 )
 form1.appendChild (row_submit)
