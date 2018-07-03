@@ -5,7 +5,7 @@
 
 
 - library in lib_js_ui_builder.js 
-- user code / test in main.js   
+- user code / test in [main.js](https://github.com/tps2015gh/js_ui_builder/blob/master/main.js) 
 - run server localhost:8888 from server.bat 
 
 - operating system : windows 10  
