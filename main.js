@@ -14,20 +14,54 @@ var tx  = add_textNode("เลือกจังหวัด");
 var d  = add_Div("Hello Div");
 var s1 = add_SELECT ("sel_prov"
                 ,[
-                {text:"AAA",value:"AAAval"}     
-                ,{text:"BBB",value:"BBBval"}
-]);
+                {text:"AAA",value:"A"}     
+                ,{text:"BBB",value:"B"}
+                ,{text:"CCC",value:"C"}
+            ]);
+s1.setAttribute("id","prov")
+
+
+var sel_amphur_data =   [
+    {text:"อำเภอ1 A",value:"a1",s1:"A"}     
+    ,{text:"อำเภอ2 A",value:"a2",s1:"A"}
+    ,{text:"อำเภอ3 B",value:"a3",s1:"B"}
+    ,{text:"อำเภอ4 B",value:"a4",s1:"B"}
+    ,{text:"อำเภอ5 C",value:"a5" ,selected: "SELECTED",s1:"C"}
+    ,{text:"อำเภอ6 C ",value:"a6" ,s1:"C"}
+];
 
 var sel_amphur = add_SELECT ( "sel_amphur"
-    ,    [
-    {text:"อำเภอ1",value:"a1"}     
-    ,{text:"อำเภอ2",value:"a2"}
-    ,{text:"อำเภอ3",value:"a3"}
-    ,{text:"อำเภอ4",value:"a4"}
-    ,{text:"อำเภอ5",value:"a5" ,selected: "SELECTED"}
-    ,{text:"อำเภอ6",value:"a6" }
-]);
+    ,   sel_amphur_data.filter( obj => { return obj.s1 == "A";  }) );
 
+
+s1.addEventListener("change",
+    ev => { 
+        //console.log(ev)
+        console.log(s1.value)
+        while (sel_amphur.options.length > 0 ){   
+            sel_amphur.options.remove(0) 
+        }
+        var filter_ed = sel_amphur_data.filter( obj => { return obj.s1 == s1.value ;  }) ;
+        filter_ed.forEach(element => {
+            var option = spell_element("option")
+            option.text = element.text
+            option.value = element.value
+            option.s1   = element.s1 
+            sel_amphur.options.add(option)    
+        });
+    }
+)
+
+
+
+
+
+sel_amphur.setAttribute("id","id_amphur")
+sel_amphur.addEventListener("change",
+        function(ev){
+            console.log(ev) 
+        }
+)
 //=========================================
 
 
