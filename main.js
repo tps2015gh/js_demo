@@ -48,6 +48,25 @@ var nav = add_NAV(
 console.log(nav)
 form1.appendChild(nav)
 
+//=========================================
+
+var row1 = spell_element("div","row")
+var col1 = spell_element("div","col-sm-12")
+row1.appendChild(col1)
+col1.appendChild(add_textNode("TEST"))
+form1.appendChild(row1)
+
+//=========================================
+
+var nav_def = add_NAV_DEFAULT(
+    "SITENAME"
+    ,["#","tools.php","data.php"]
+    , ["Home2","Tools2","DATA2"]
+    ,0 
+);
+console.log(nav_def)
+form1.appendChild(nav_def)
+
 
 //=========================================
 

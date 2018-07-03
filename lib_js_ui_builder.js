@@ -99,3 +99,42 @@ var add_NAV = function(links , texts , active_index){
     }
     return nav
 }
+
+var spell_element = function(elm_type , classname){
+    var div = document.createElement(elm_type)
+    div.className = classname 
+    return div 
+}
+
+var add_NAV_DEFAULT = function(sitename, links , texts , active_index){
+    var nav = spell_element("nav","navbar navbar-expand-sm bg-dark navbar-dark")
+    var cont_fluid = spell_element("div","container-fluid")
+    nav.appendChild(cont_fluid)
+    var div_hd =  spell_element("div","navbar-header")
+    var nav_hd =  spell_element("a","navbar-brand")
+    nav_hd.setAttribute("href","#")
+    nav_hd.text = sitename 
+
+    nav.appendChild(cont_fluid)
+    cont_fluid.appendChild(nav_hd)
+
+    // body 
+    var ul_body = spell_element("ul","navbar-nav")
+
+    console.log(texts)
+    for (let index = 0; index < links.length; index++) {
+        var a1  = spell_element("a","nav-link")
+        a1.setAttribute("href",links[index])
+        a1.text = texts[index] 
+        var li1 = spell_element("li","nav-item")
+        if(index == active_index){
+            li1.className  = "nav-item active"
+        }  
+        ul_body.appendChild(li1)
+        li1.appendChild(a1)
+        ul_body.appendChild(li1)            
+    }
+    cont_fluid.appendChild(ul_body)
+
+    return nav
+}
