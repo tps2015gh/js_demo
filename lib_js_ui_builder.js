@@ -176,7 +176,11 @@ var add_row_input = function(class_text , class_input, text , input_type, props)
     }
     
     for (const [key, value] of Object.entries(props)) {
+        
         console.log(`ลงทะเบียน PROP : ${key} val== ${value}`); // "a 5", "b 7", "c 9" 
+        
+        console.log( input1 )
+
         input1.setAttribute(key , value)  
     }
 
@@ -202,3 +206,24 @@ var add_row_input = function(class_text , class_input, text , input_type, props)
 
  }
  
+var filter_province_amphur = function(sel_prov , sel_detail,sel_detail_data,filter_colname){
+    //console.log(ev)
+    //console.log(sel_prov.value)
+    while (sel_amphur.options.length > 0 ){   
+        sel_amphur.options.remove(0) 
+    }
+    var filter_ed = sel_amphur_data.filter( 
+                obj => { 
+                        //console.log("obj = ")
+                        //console.log(obj)
+                        return obj[filter_colname] == sel_prov.value ;  
+                    }
+            ) ;
+    filter_ed.forEach(element => {
+        var option = spell_element("option")
+        option.text = element.text
+        option.value = element.value
+        option.s1   = element.s1 
+        sel_amphur.options.add(option)    
+    });    
+}

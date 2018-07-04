@@ -36,23 +36,9 @@ var sel_amphur = add_SELECT ( "sel_amphur"
 
 s1.addEventListener("change",
     ev => { 
-        //console.log(ev)
-        console.log(s1.value)
-        while (sel_amphur.options.length > 0 ){   
-            sel_amphur.options.remove(0) 
-        }
-        var filter_ed = sel_amphur_data.filter( obj => { return obj.s1 == s1.value ;  }) ;
-        filter_ed.forEach(element => {
-            var option = spell_element("option")
-            option.text = element.text
-            option.value = element.value
-            option.s1   = element.s1 
-            sel_amphur.options.add(option)    
-        });
+        filter_province_amphur(s1, sel_amphur,sel_amphur_data,"s1")
     }
 )
-
-
 
 
 
@@ -126,8 +112,9 @@ row = add_ROW(
 form1.appendChild(row)
 
 //=========================================
-var props_idcard = {"placeholder":"เลขที่บัตร...","value":"","maxlength":5}
-var row_idcard = add_row_input("col-sm-3","col-sm-4","ป้อนเลขที่บัตร(ุ5อักษร)","text",props_idcard)
+var props_idcard = {"placeholder":"เลขที่บัตร...","value":"","maxlength":5
+                       ,"style":"background-color:lightgreen;color:green;" }
+var row_idcard = add_row_input_event("col-sm-3","col-sm-4","ป้อนเลขที่บัตร(ุ5อักษร)","text",props_idcard,{})
 
 form1.appendChild(row_idcard)
 
@@ -138,9 +125,11 @@ form1.appendChild(row_date)
 
 
 //=========================================
-var props_range = {"value":20,"max":50
-                    ,"min":0 , 
-                    "id":"range1"} 
+var props_range = {"value":20
+                    ,"max":50
+                    ,"min":0 
+                    ,"id":"range1"
+                    } 
 var events_range    =  {"change": 
                             function(ev){ 
                                 var st = document.getElementById("tx_stat") 
