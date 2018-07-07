@@ -73,7 +73,7 @@ form1.appendChild(nav)
 
 //=========================================
 var links = ['#','#','#']
-var texts = ["AAA","BBB","CCC"]
+var texts = ["เมนู 1","เมนู 2","menu 3"]
 var dropdown = add_dropdown("Button Menu" ,links ,texts)
 console.log(dropdown)
 

@@ -179,32 +179,28 @@ var add_dropdown = function (button_text, links , texts ){
 </div>     */
 
     var dd  = spell_element("div","dropdown");
-    dd.setAttribute("id","dd1")
-    console.log(dd)
-    var btn = spell_element("button","btn btn-primary dropdown-toggle")
+    var btn = spell_element("button","btn btn-default dropdown-toggle")
     //console.log(btn)
     btn.setAttribute("type","button")
     btn.setAttribute("data-toggle","dropdown")
-    //btn.setAttribute("id","menu1")
     btn.setAttribute("aria-haspopup","true")
     btn.setAttribute("aria-expanded","false")
-    btn.appendChild( add_textNode(button_text))
-    console.log(btn)
-    var span  = spell_element("span","caret")
-    btn.appendChild(span)
-    dd.appendChild(btn)
+    btn.appendChild( add_textNode(button_text))     // add button text
+    //console.log(btn)
+    btn.appendChild(spell_element("span","caret"))                       
+    dd.appendChild(btn)                             // add button to dropdown
 
-    var ul = spell_element("div","dropdown-menu");
+    var ul = spell_element("ul","dropdown-menu");
     //ul.setAttribute("role","menu")
     ul.setAttribute("aria-labelledby","dropdownMenuButton")
     ul.setAttribute("aria-labelledby","menu1")
     for(var i=0; i < links.length ; i++  ){
-        //var li = spell_element("li","")
-        //li.setAttribute("role","presentation")
+        var li = spell_element("li","")
+        li.setAttribute("role","presentation")
         var ahref = add_ahref(links[i],texts[i])
         ahref.className = "dropdown-item"
-        
-        ul.appendChild(ahref)
+        li.appendChild(ahref)                       // li  > ahref 
+        ul.appendChild(li)                          // ul  > li > ahref  
     }
     dd.appendChild(ul)
     
