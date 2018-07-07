@@ -1,6 +1,9 @@
 
 //var body = document.body;
 //var root = document.getElementById("root"); 
+var refresh_sec = 60 
+add_RELOAD_HTML_SEC(refresh_sec)
+set_page_title("ทดสอบข้อมูล " + new Date().toLocaleTimeString())
 
 
 var root = document.body ; 
@@ -69,11 +72,21 @@ console.log(nav)
 form1.appendChild(nav)
 
 //=========================================
+var links = ['#','#','#']
+var texts = ["AAA","BBB","CCC"]
+var dropdown = add_dropdown("Button Menu" ,links ,texts)
+console.log(dropdown)
+
+//form1.appendChild(dropdown)
+    nav.appendChild(dropdown)
+//=========================================
 
 var row1 = spell_element("div","row")
 var col1 = spell_element("div","col-sm-12")
 row1.appendChild(col1)
-col1.appendChild(add_textNode("TEST"))
+var text_title = "TITLE (use Boostrap 4.0) ," + new Date().toLocaleTimeString()
+            + ", refresh every " + refresh_sec + " sec(s)"
+col1.appendChild(add_textNode(text_title ))
 form1.appendChild(row1)
 
 //=========================================

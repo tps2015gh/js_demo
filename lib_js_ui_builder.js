@@ -166,6 +166,52 @@ var add_row_input = function(class_text , class_input, text , input_type, props)
      return node_row
  }
 
+var add_dropdown = function (button_text, links , texts ){
+
+    /* <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+</div>     */
+
+    var dd  = spell_element("div","dropdown");
+    dd.setAttribute("id","dd1")
+    console.log(dd)
+    var btn = spell_element("button","btn btn-primary dropdown-toggle")
+    //console.log(btn)
+    btn.setAttribute("type","button")
+    btn.setAttribute("data-toggle","dropdown")
+    //btn.setAttribute("id","menu1")
+    btn.setAttribute("aria-haspopup","true")
+    btn.setAttribute("aria-expanded","false")
+    btn.appendChild( add_textNode(button_text))
+    console.log(btn)
+    var span  = spell_element("span","caret")
+    btn.appendChild(span)
+    dd.appendChild(btn)
+
+    var ul = spell_element("div","dropdown-menu");
+    //ul.setAttribute("role","menu")
+    ul.setAttribute("aria-labelledby","dropdownMenuButton")
+    ul.setAttribute("aria-labelledby","menu1")
+    for(var i=0; i < links.length ; i++  ){
+        //var li = spell_element("li","")
+        //li.setAttribute("role","presentation")
+        var ahref = add_ahref(links[i],texts[i])
+        ahref.className = "dropdown-item"
+        
+        ul.appendChild(ahref)
+    }
+    dd.appendChild(ul)
+    
+    console.log( dd )
+    return dd      
+}
+
  var add_row_input_event = function(class_text , class_input, text , input_type, props ,events){
     var input1  =add_input_props(input_type,"form-control",props )
     for (const [key, value] of Object.entries(events)) {
@@ -226,4 +272,19 @@ var filter_province_amphur = function(sel_prov , sel_detail,sel_detail_data,filt
         option.s1   = element.s1 
         sel_amphur.options.add(option)    
     });    
+}
+
+var add_RELOAD_HTML_5000 = function ( ){
+    setTimeout(function(){
+        window.location.reload(1);
+     }, 5000);    
+}
+var add_RELOAD_HTML_SEC = function ( sec  ){
+    setTimeout(function(){
+        window.location.reload(1);
+    },  sec * 1000 );    
+}
+
+var set_page_title = function(title){
+    document.title = title 
 }
