@@ -51,7 +51,9 @@ var add_question_block = function(q_name,q_text, vocab ,ans_count ) {
         var hd =  String.fromCharCode(65+ i );
         if(i != random_correct0){
             var tx_error = get_text_error(vocab)
-            q.appendChild( add_ans_text(q_name , false , hd + ". (ERR)" + i + "/" + random_correct0 + "/"  + tx_error ) )
+//            q.appendChild( add_ans_text(q_name , false , hd + ". (ERR)" + i + "/" + random_correct0 + "/"  + tx_error ) )
+            q.appendChild( add_ans_text(q_name , false , hd + ". "  + tx_error ) )
+
             //console.log (" text error " + (i+1) + ": " + tx_error  )    
         }else{
             q.appendChild(add_ans_text(q_name , true , hd + ".  "  + vocab ,true ))
@@ -60,10 +62,19 @@ var add_question_block = function(q_name,q_text, vocab ,ans_count ) {
     return q 
 }
 
+var  arr_question_answer = [{q:"ดีลิเชียส",a:"delicius"}
+                            ,{q:"ดีลิเวอร์",a:"deliver"}
+                            ,{q:"ทีวี",a:"television"}
+                            ,{q:"พระอาทิตย์",a:"sun"}]
+
+
 var  ans_count = 5
-var q1 = add_question_block("Q1","คำว่า ดีลิเชียส สะกดอย่างไร","delicius",ans_count )
-console.log(q1)
-root.appendChild(q1)
+arr_question_answer.forEach((element,index ) => {
+    var q1 = add_question_block("Q" + index ,"คำว่า '" + element.q +  "' สะกดอย่างไร",element.a ,ans_count )
+    console.log(q1)
+    root.appendChild(q1)
+    root.appendChild(spell_element("br",""))        
+});
 
 function get_random_1toN(  n  ){
     return Math.floor(Math.random() * n  ) +1 ;
