@@ -38,26 +38,32 @@ var add_question = function(){
     return q 
 }
 
-
-var qt = add_question_text("คำว่า ดีลิเชียส สะกดอย่างไร")
-console.log(qt)
-var q = add_question()
-q.appendChild(qt  )
-root.appendChild(q)
-
-var ans_count  = 5 ; 
-var random_correct0 = get_random_1toN(ans_count) -1 
-for(var i = 0 ; i < 5; i++ ){
-    var hd =  String.fromCharCode(65+ i );
-    var vocab = "delicius"
-    if(i != random_correct0){
-        var tx_error = get_text_error("delicius")
-        q.appendChild( add_ans_text("Q1" , false , hd + ". (ERR)" + i + "/" + random_correct0 + "/"  + tx_error ) )
-        //console.log (" text error " + (i+1) + ": " + tx_error  )    
-    }else{
-        q.appendChild(add_ans_text("Q1" , true , hd + ".  "  + vocab ,true ))
+var add_question_block = function(q_name,q_text, vocab ,ans_count ) {
+    var qt = add_question_text(q_text)
+    console.log(qt)
+    var q = add_question()
+    q.appendChild(qt  )
+    //root.appendChild(q)
+    
+    //var ans_count  = 5 ; 
+    var random_correct0 = get_random_1toN(ans_count) -1 
+    for(var i = 0 ; i < 5; i++ ){
+        var hd =  String.fromCharCode(65+ i );
+        if(i != random_correct0){
+            var tx_error = get_text_error(vocab)
+            q.appendChild( add_ans_text(q_name , false , hd + ". (ERR)" + i + "/" + random_correct0 + "/"  + tx_error ) )
+            //console.log (" text error " + (i+1) + ": " + tx_error  )    
+        }else{
+            q.appendChild(add_ans_text(q_name , true , hd + ".  "  + vocab ,true ))
+        }
     }
+    return q 
 }
+
+var  ans_count = 5
+var q1 = add_question_block("Q1","คำว่า ดีลิเชียส สะกดอย่างไร","delicius",ans_count )
+console.log(q1)
+root.appendChild(q1)
 
 function get_random_1toN(  n  ){
     return Math.floor(Math.random() * n  ) +1 ;
