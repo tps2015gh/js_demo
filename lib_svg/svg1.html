@@ -1,0 +1,81 @@
+<html>
+<body>
+<div id="root">root
+<br>
+
+</div>
+<script type="text/javascript">
+var svg_circle = function(cx,cy,r){
+	var svgNS = "http://www.w3.org/2000/svg"
+	var c    = document.createElementNS(svgNS,"circle")
+	c.setAttribute("cx",cx )
+	c.setAttribute("cy",cy )
+	c.setAttribute("r",r )
+	c.setAttribute("stroke","blue")
+	c.setAttribute("stroke-width","2")
+	c.setAttribute("fill","yellow")
+	return c 
+}	
+var svg_root = function(wi,hi){
+	var svgNS = "http://www.w3.org/2000/svg"
+	var svg   = document.createElementNS(svgNS, "svg");
+	svg.setAttribute("width",wi)
+	svg.setAttribute("height",hi)
+	//svg.setAttribute("style","border:1px solid silver;")
+	return svg
+}
+
+var svg_line = function (xy1 , xy2 ,  style,  ){
+	var svgNS = "http://www.w3.org/2000/svg"
+	var line   = document.createElementNS(svgNS, "line");
+	line.setAttribute("x1",xy1.x)
+	line.setAttribute("y1",xy1.y)	
+	line.setAttribute("x2",xy2.x)
+	line.setAttribute("y2",xy2.y)	
+	line.style =  style 
+	return line 
+}
+
+//========================
+	var root = document.getElementById("root")
+	var svg = svg_root("600","500")
+	svg.setAttribute("style","background-color:lightgreen;border:1px solid silver;")
+	for( var i = 0 ; i< 20 ; i ++){
+		var r = 2 
+		var cx_svg = (i * 20) +50 
+		var circle = svg_circle(cx_svg, 0 + 50,r)
+		svg.appendChild(circle)
+	}
+	for( var i = 0 ; i< 20 ; i ++){
+		var r = 2 
+		var cy_svg = (i  * 20) +50 
+		var circle = svg_circle( 0+ 50 ,cy_svg,r)
+		svg.appendChild(circle)
+	}
+
+	for(i = 0 ; i < 20 ; i ++){
+		var x = i 
+		var y = 20 - i 
+		var x_scr = x *20 + 50
+		var y_scr = y *20 + 50
+		var line = svg_line({x: x_scr,y: 0+50 }
+							,{x: 0+50 , y:x_scr }
+						,"stroke:skyblue;stroke-width:2")
+		//console.log(line)
+		svg.appendChild(line)
+
+		//===================================
+		var p1 = {x: i*20 +50 , y : 0+50 }
+		var p2 = {x: 0 +50   , y : (19-i)*20+50 }
+		line = svg_line(p1,p2 ,"stroke:rgb(255,0,150);stroke-width:2")
+		//console.log(line)
+		svg.appendChild(line)
+
+	}
+
+	root.appendChild(svg)
+	//alert("i")
+	console.log("finished")
+</script>
+</body>
+</html>
