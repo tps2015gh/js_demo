@@ -1,3 +1,11 @@
+/*  lib_exam.js   
+
+    @author: Thitipong Samranvanich
+    @since: 2018-07-11 
+    @country: thailand
+    @code_language :   javascript , no library 
+    @test_on_browser:  Google Chrome  
+*/
 var add_question_style = function(){
     var style = spell_element("style","")
     style.appendChild(add_textNode(".question  {border:1px solid orange;background-color:lightyellow;min-height:100px;"))
@@ -40,18 +48,10 @@ var add_question_block = function( qa ) {
     console.log(qt)
     var q = add_question()
     q.appendChild(qt  )
-    //root.appendChild(q)
-    
-    //var ans_count  = 5 ; 
-    //var random_correct0 = get_random_1toN(ans_count) -1 
     console.log( qa.items)
     for(var i = 0 ; i < qa.items.length  ; i++ ){
         var hd =  String.fromCharCode(65+ i );
-        //if(i != random_correct0){
-        //    var tx_error = get_text_error(vocab)
-//            q.appendChild( add_ans_text(q_name , false , hd + ". (ERR)" + i + "/" + random_correct0 + "/"  + tx_error ) )
-            q.appendChild( add_ans_text(qa ,i  ) )
-        //}
+        q.appendChild( add_ans_text(qa ,i  ) )
     }
     return q 
 }
