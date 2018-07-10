@@ -16,11 +16,12 @@ var demo = spell_element("div","")
 demo.setAttribute("id","demo")
 root.appendChild(demo)
 
-var  arr_question_answer = [{q:"ดีลิเชียส",a:"delicius"}
-                            ,{q:"ดีลิเวอร์",a:"deliver"}
-                            ,{q:"ทีวี",a:"television"}
-                            ,{q:"สะดวกสบาย",a:"convenience"}
+var  arr_question_answer = [ {q:"ดีลิเชียส",a:"delicius"}
+                                ,{q:"ดีลิเวอร์",a:"deliver"}
+                                ,{q:"ทีวี",a:"television"}
+                                ,{q:"สะดวกสบาย",a:"convenience"}
                         ]
+                        
                         var xhttp = new XMLHttpRequest();
                         xhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
@@ -32,7 +33,6 @@ var  arr_question_answer = [{q:"ดีลิเชียส",a:"delicius"}
                           };
                         xhttp.open("GET", "data.php", true);
                         xhttp.send();
-
                     
 function display( arr_question_answer ){
     var  ans_count = 5
