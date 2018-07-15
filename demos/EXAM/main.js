@@ -12,11 +12,33 @@ root.appendChild(style)
 
 console.log(root)
 
+
+var on_ans_click = function(ev){
+    console.log(ev)
+    console.log(this)
+    var ans = ev.target
+    console.log(ans.getAttribute("is_correct"))
+    ans.setAttribute("readonly","readonly")
+    var qt = ans.parentNode.parentNode
+    console.log(qt) 
+    qt.setAttribute("style","background-color:lightblue")
+    qt.childNodes.forEach( div  => {
+        div.setAttribute("style","")
+    });
+    
+
+    ans.parentNode.setAttribute("style","color:blue;font-weight:bold")
+
+
+    //if(ans.getAttribute("is_correct") == "true" ){
+    //    console.log("SET COLOR")
+    //    ans.parentNode.setAttribute("style","background-color:red;")
+    //}
+}
+
 var demo = spell_element("div","")
 demo.setAttribute("id","demo")
 root.appendChild(demo)
-
-
                         
                         var xhttp = new XMLHttpRequest();
                         xhttp.onreadystatechange = function() {
@@ -24,22 +46,13 @@ root.appendChild(demo)
                                 var jsontext = this.responseText;
                                 var ar_qa   =  JSON.parse( jsontext)
                                 //alert(arr_question_answer)
-                                display(ar_qa )
+                                exam_display(ar_qa ,on_ans_click)
                                 
                             }
                           };
                         xhttp.open("GET", "data.php", true);
                         xhttp.send();
                     
-function display( arr_question_answer ){
-    var  ans_count = 5
-    arr_question_answer.forEach((element,index ) => {
-        var q1 = add_question_block(element )
-        console.log(q1)
-        root.appendChild(q1)
-        root.appendChild(spell_element("br",""))        
-    });    
-}
 
 
 
