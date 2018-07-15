@@ -34,8 +34,9 @@ ah = add_ahref("demos/EXAM/index.html","EXAM","btn btn-default")
 root.appendChild( ah  );
 root.appendChild( add_br() )
 
-root.appendChild( spell_element("hr","") )
-
-ah = add_ahref("demos/EXAM/index.html","EXAM","btn btn-default")
+ah = add_ahref("demos/lib_svg/svg1.html","SVG Library","btn btn-default")
 root.appendChild( ah  );
 root.appendChild( add_br() )
+
+root.appendChild( spell_element("hr","") )
+
