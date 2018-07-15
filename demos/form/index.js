@@ -56,7 +56,7 @@ sel_amphur.addEventListener("change",
 
 
 //=========================================
-var banner = add_IMG("banner_nb.jpg");
+var banner = add_IMG("../../img/banner_nb.jpg");
 banner.style.width = "100%"
 banner.style.height= "80px"
 form1.appendChild(banner)

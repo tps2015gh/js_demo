@@ -284,3 +284,7 @@ var add_RELOAD_HTML_SEC = function ( sec  ){
 var set_page_title = function(title){
     document.title = title 
 }
+
+var redirect = function(url){
+    docuemnt.redirect(url)
+}

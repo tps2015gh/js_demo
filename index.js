@@ -25,7 +25,17 @@ function add_br(){
     return br 
 }
 
-var ah = add_ahref("index2.html","Demo Form- index2","btn btn-default")
+var ah = null  
+ah = add_ahref("demos/form/index.html","Demo Form- index2","btn btn-default")
 root.appendChild( ah  );
 root.appendChild( add_br() )
 
+ah = add_ahref("demos/EXAM/index.html","EXAM","btn btn-default")
+root.appendChild( ah  );
+root.appendChild( add_br() )
+
+root.appendChild( spell_element("hr","") )
+
+ah = add_ahref("demos/EXAM/index.html","EXAM","btn btn-default")
+root.appendChild( ah  );
+root.appendChild( add_br() )
