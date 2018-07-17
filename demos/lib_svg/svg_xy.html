@@ -1,0 +1,66 @@
+<html>
+<body>
+
+<div id="div1">
+
+</div>
+
+<script src="../../lib/lib_svg.js"></script> 
+<script type="text/javascript">
+   var div1   =  document.getElementById("div1") 
+   var SVG_HI = 300 
+   var svg  = svg_root(500,SVG_HI)
+    svg.setAttribute("style","background-color:cornsilk;border:1px solid")
+    svg.setAttribute("viewBox","-200 -200 400 300")
+    
+    var shift_left   = 10 
+    var shift_bottom = -10 
+    var g1 =  svg_g_graphxy(0 , 0 ,1,-1)
+    var line_style = "stroke:rgb(200,10,10);stroke-width:blue"
+    var line_style_axis = "stroke:blue;stroke-width:blue"
+
+var svg_line_leftright = function(left, right, bottom_up ,line_style ){
+    return  svg_line_xy(left,bottom_up,right,bottom_up,line_style)
+}
+var svg_line_bottomup = function( bottom, up,  left_right ,line_style ){
+    return  svg_line_xy(left_right,bottom,left_right,up,line_style)
+} 
+    g1.appendChild( svg_line_leftright(-200,200,0,line_style_axis))
+    g1.appendChild( svg_line_bottomup (-50,150,0,line_style_axis))
+
+var fn = function(x){
+    return   (x * x)/20   + x + 0
+}
+var fn2 = function(x){
+    return   Math.sin(x/Math.PI) *10
+}
+
+    var ln = svg_line_xy(100,100,300,100,line_style)
+    g1.appendChild(ln)
+
+    var y1,y2 ;
+    var x1,x2 
+    for(var x = -180 ; x < 100 ; x++){
+        x1 = x 
+        x2 = x+ 1
+        y1 = fn(x1)
+        y2 = fn(x2)
+        g1.appendChild(  svg_line_xy(x1,y1,x2,y2,line_style) )
+
+        x1 = x 
+        x2 = x+ 1
+        y1 = fn2(x1)
+        y2 = fn2(x2)
+        g1.appendChild(  svg_line_xy(x1,y1,x2,y2,line_style) )
+
+    }
+
+    console.log("append ok")
+    console.log(g1)
+    svg.appendChild(g1)
+    div1.appendChild(svg )
+    console.log(svg)
+
+</script>
+</body>
+</html>

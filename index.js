@@ -38,5 +38,9 @@ ah = add_ahref("demos/lib_svg/svg1.html","SVG Library","btn btn-default")
 root.appendChild( ah  );
 root.appendChild( add_br() )
 
+ah = add_ahref("demos/lib_svg/svg_xy.html","SVG Library - xy ","btn btn-default")
+root.appendChild( ah  );
+root.appendChild( add_br() )
+
 root.appendChild( spell_element("hr","") )
 
