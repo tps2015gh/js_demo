@@ -1,6 +1,7 @@
 set_page_title("ท่องศัพท์ " + new Date().toLocaleTimeString())
 
-var root = document.body ; 
+//var root = document.body ;
+var root = document.getElementById("root") 
 root.style.marginLeft = "10px"
 root.style.paddingLeft = "10px"
 

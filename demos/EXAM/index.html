@@ -25,12 +25,28 @@
 </style>
 </head>
 <body>
+    <script>
+        function getCode(){
+            var r = document.getElementById("root")
+            var htm =  r.innerHTML
+            console.log(htm)
+            var code1 = document.getElementById("code1") 
+            code1.innerText = htm
+        }
+    </script>
+
+    <textarea rows="10" cols="150" id="code1">
+        tt
+    </textarea>
+    <button onclick="getCode()">getCode</button>
     
     <div id="root"></div>
 
     <script src="../../lib/js_ui_builder.js"></script>
     <script src="../../lib/lib_examp.js"></script>
     <script src="main.js"></script>
+
+
 
 </body>
 </html>
