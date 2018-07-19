@@ -23,11 +23,39 @@
     
     // <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
 
+
+//=======================================
+var svg_text = function(x,y, fillcolor , text ){
+    //var r = spell_element("rect","svg_rect")
+    var svgNS = "http://www.w3.org/2000/svg"
+	var r   = document.createElementNS(svgNS, "text");
+    r.setAttribute("style","fill:" +  fillcolor  ) 
+
+    var translate_x =  10
+    var translate_y = 20 
+    var scale_x = 1 
+    var scale_y = 1 
+	var transform  = "translate("+ translate_x + ","+ translate_y +")"
+            + " " + "scale("+1+","+1+ ")"
+            + " " + "scale("+scale_x+","+scale_y+ ")"
+            //+ " rotate(180, 100, 100) "
+	r.setAttribute("transform",transform)
+
+    r.setAttribute("x",x)
+	r.setAttribute("y",y)
+	r.textContent = text 
+    console.log(r )
+    return r  
+}
+
+//=======================================
 class timeline{
-    constructor(x,width,svg_obj){
+    constructor(x,width,svg_obj ,text ,svg_text   ){
         this.x = x 
         this.width = width
-        this.svg = svg_obj  
+        this.text = text 
+        this.svg_obj = svg_obj  
+        this.svg_text = svg_text
     }
 }
 class timelines{
@@ -52,13 +80,16 @@ class timelines{
     append( width ,fillcolor   ){
         //this.items.append(obj )
         var svg_obj  = svg_rect(this.tailx ,this.taily , width  , fillcolor  )
-        var tl = new timeline(this.tailx , width, svg_obj)
+        var svg_text1  = svg_text(this.tailx ,this.taily ,  "black" , "x:" + this.tailx +",y:" + this.taily+",color:"+fillcolor  )
+        var text = "timeline"
+        var tl = new timeline(this.tailx , width, svg_obj ,text , svg_text1  )
         console.log(this )
         console.log(this.items  )
         console.log(tl  )
 
         this.items.push( tl )
         g1.appendChild(svg_obj)
+        g1.appendChild(svg_text1)
         this.tailx =  this.tailx + width + this.space_x
         return tl   
     }
@@ -90,7 +121,7 @@ class timelines{
     tls.append(150,"pink ")
 
     var tls2 = new timelines(-200,100)
-    tls2.append(50,"lightblue")
+    tls2.append(50,"blue")
     tls2.up()
     tls2.append(155,"red")
     //tls2.up()
