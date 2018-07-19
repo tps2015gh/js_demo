@@ -77,7 +77,7 @@ class timelines{
     div1.appendChild(svg )
     console.log(svg)
     
-    var r = svg_rect(50,150,100,"yellow")
+    var r = svg_rect(50,-50,100,"yellow")
     g1.appendChild(r )
 
     var tls = new timelines(-200,0)
@@ -88,6 +88,16 @@ class timelines{
     tls.append(25,"orange")
     tls.down()
     tls.append(150,"pink ")
+
+    var tls2 = new timelines(-200,100)
+    tls2.append(50,"lightblue")
+    tls2.up()
+    tls2.append(155,"red")
+    //tls2.up()
+    tls2.append(40,"orange")
+    tls2.down()
+    tls2.append(150,"pink ")
+
 
 </script>
 </body>
