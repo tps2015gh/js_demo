@@ -31,21 +31,36 @@ class timeline{
     }
 }
 class timelines{
-    constructor(y){
+    constructor(x,y){
         this.items = []
         this.y  = y 
-        this.tailx  = 0
-        this.taily  = 30
+        this.tailx  = x 
+        this.taily  = y 
         this.g1 = g1   /* global */
-        this.space_x   = 10     
+        this.space_x   =  0 // 10     
+        this.hight_y   = 30
+        console.log("constructor ok ")
     }
-    append( width ,fillcolor    ){
+
+    up (){
+        this.taily  += this.hight_y 
+    }
+    down (){
+        this.taily  -= this.hight_y 
+    }
+
+    append( width ,fillcolor   ){
         //this.items.append(obj )
         var svg_obj  = svg_rect(this.tailx ,this.taily , width  , fillcolor  )
-        var tl = new timeline(this.tailx , width, svg_obj) 
-        this.items.append(tl )
+        var tl = new timeline(this.tailx , width, svg_obj)
+        console.log(this )
+        console.log(this.items  )
+        console.log(tl  )
+
+        this.items.push( tl )
         g1.appendChild(svg_obj)
-        this.tailx =  this.tailx + width + space_x  
+        this.tailx =  this.tailx + width + this.space_x
+        return tl   
     }
 }
 var svg_rect = function(x,y,width,fillcolor){
@@ -100,8 +115,18 @@ var x1 ,x2, y1 ,y2
     div1.appendChild(svg )
     console.log(svg)
     
-    var r = svg_rect(50,50,100,"yellow")
+    var r = svg_rect(50,150,100,"yellow")
     g1.appendChild(r )
+
+    var tls = new timelines(-200,0)
+    tls.append(50,"lightblue")
+    tls.up()
+    tls.append(100,"red")
+    tls.up()
+    tls.append(25,"orange")
+    tls.down()
+    tls.append(150,"pink ")
+
 </script>
 </body>
 </html>
