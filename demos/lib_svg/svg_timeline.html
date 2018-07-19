@@ -16,45 +16,92 @@
     var shift_left   = 10 
     var shift_bottom = -10 
     var g1 =  svg_g_graphxy(0 , 0 ,1,-1)
-    var line_style = "stroke:rgb(200,10,10);stroke-width:blue"
-    var line_style_axis = "stroke:blue;stroke-width:blue"
+    var line_style = "stroke:rgb(200,10,10);stroke-width:1px;"
+    var line_style_axis = "stroke:darkblue;stroke-width:blue;stroke-width:2px;"
+    var line_style_grid = "stroke:silver;stroke-width:1px;"
+    
+    
+    // <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
 
+class timeline{
+    constructor(x,width,svg_obj){
+        this.x = x 
+        this.width = width
+        this.svg = svg_obj  
+    }
+}
+class timelines{
+    constructor(y){
+        this.items = []
+        this.y  = y 
+        this.tailx  = 0
+        this.taily  = 30
+        this.g1 = g1   /* global */
+        this.space_x   = 10     
+    }
+    append( width ,fillcolor    ){
+        //this.items.append(obj )
+        var svg_obj  = svg_rect(this.tailx ,this.taily , width  , fillcolor  )
+        var tl = new timeline(this.tailx , width, svg_obj) 
+        this.items.append(tl )
+        g1.appendChild(svg_obj)
+        this.tailx =  this.tailx + width + space_x  
+    }
+}
+var svg_rect = function(x,y,width,fillcolor){
+    //var r = spell_element("rect","svg_rect")
+    var svgNS = "http://www.w3.org/2000/svg"
+	var r   = document.createElementNS(svgNS, "rect");
+    r.setAttribute("style","fill:" +  fillcolor + ";stroke-width:3;stroke:rgb(0,0,0);" ) 
+    r.setAttribute("x",x)
+    r.setAttribute("y",y)
+    r.setAttribute("width",width)
+    r.setAttribute("height",30)
+    console.log(r )
+    return r  
+}
+var draw_grid_bottom_top = function(bottom , top ){
+var x1 ,x2, y1 ,y2  
+    y1 = bottom
+    y2 = top 
+    for(var x = -200 ; x <= 200; x +=50){
+        x1 = x ;x2 = x 
+        var ln = svg_line_xy( x1,y1,x2,y2,line_style_grid)
+        g1.appendChild(ln)
+        console.log(ln )
+    }
+    console.log(g1)
+    console.log("draw_grid ok ")
+}
+var draw_grid_left_right = function(left , right ){
+var x1 ,x2, y1 ,y2  
+    x1 = left 
+    x2 = right 
+    for(var y = -200 ; y <= 200; y +=50){
+        y1 = y ;y2 = y 
+        var ln = svg_line_xy( x1,y1,x2,y2,line_style_grid)
+        g1.appendChild(ln)
+        console.log(ln )
+    }
+    console.log(g1)
+    console.log("draw_grid ok ")
+}
+
+    // DRAW GRID 
+    draw_grid_bottom_top(-200,200) 
+    draw_grid_left_right(-200,200) 
+    // DRAW AXIST 
     g1.appendChild( svg_line_leftright(-200,200,0,line_style_axis))
     g1.appendChild( svg_line_bottomup (-50,150,0,line_style_axis))
-
-var fn = function(x){
-    return   (x * x)/20   + x + 0
-}
-var fn2 = function(x){
-    return   Math.sin(x/Math.PI) *10
-}
-
-    var ln = svg_line_xy(100,100,300,100,line_style)
-    g1.appendChild(ln)
-
-    var y1,y2 ;
-    var x1,x2 
-    for(var x = -180 ; x < 100 ; x++){
-        x1 = x 
-        x2 = x+ 1
-        y1 = fn(x1)
-        y2 = fn(x2)
-        g1.appendChild(  svg_line_xy(x1,y1,x2,y2,line_style) )
-
-        x1 = x 
-        x2 = x+ 1
-        y1 = fn2(x1)
-        y2 = fn2(x2)
-        g1.appendChild(  svg_line_xy(x1,y1,x2,y2,line_style) )
-
-    }
 
     console.log("append ok")
     console.log(g1)
     svg.appendChild(g1)
     div1.appendChild(svg )
     console.log(svg)
-
+    
+    var r = svg_rect(50,50,100,"yellow")
+    g1.appendChild(r )
 </script>
 </body>
 </html>
