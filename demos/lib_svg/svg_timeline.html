@@ -80,7 +80,9 @@ class timelines{
     append( width ,fillcolor   ){
         //this.items.append(obj )
         var svg_obj  = svg_rect(this.tailx ,this.taily , width  , fillcolor  )
-        var svg_text1  = svg_text(this.tailx ,this.taily ,  "black" , "x:" + this.tailx +",y:" + this.taily+",color:"+fillcolor  )
+        var text1 = "x:" + this.tailx +",y:" + this.taily+",color:"+fillcolor 
+        text1 = "...."
+        var svg_text1  = svg_text(this.tailx ,this.taily ,  "black" ,  text1  )
         var text = "timeline"
         var tl = new timeline(this.tailx , width, svg_obj ,text , svg_text1  )
         console.log(this )
