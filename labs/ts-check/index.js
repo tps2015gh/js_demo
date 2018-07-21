@@ -1,0 +1,59 @@
+/* 
+for visual studio code 
+Type checking  
+Refer to  https://github.com/Microsoft/TypeScript/wiki/Type-Checking-JavaScript-Files
+*/
+
+//@ts-check
+
+
+/** @type {number} */
+var x ;
+x = 20 ; 
+
+/**
+ * @type {HTMLElement}
+ */
+function getRoot(){
+    var root = document.getElementById("root")
+    return root  
+}
+/**
+ * @type {HTMLButtonElement}
+ * @param {string}  text 
+ */
+function newButton(text){
+    /** @type {HTMLElement} */
+    var bt = document.createElement("button")
+    bt.innerText = text  
+    return bt  
+}
+
+
+class Content{
+    constructor(){
+    }
+    build(){
+        /** @type {HTMLElement} root  */
+        var root = getRoot()
+        root.appendChild( newButton("Button1") )
+        root.appendChild( newButton("Button2") )                
+    }
+}
+
+class Page{
+    /** @type {Content} */
+    ct  ;
+    
+    /** @param {Content} ct  */
+    constructor(ct ){
+        this.ct = ct 
+    } 
+    build(){
+        this.ct.build()
+    }
+}
+
+var ct   = new Content()
+var page = new Page(ct )
+page.build()
