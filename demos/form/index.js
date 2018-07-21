@@ -1,3 +1,4 @@
+//@ts-check
 
 //var body = document.body;
 //var root = document.getElementById("root"); 
@@ -5,7 +6,7 @@ var refresh_sec = 60
 add_RELOAD_HTML_SEC(refresh_sec)
 set_page_title("ทดสอบข้อมูล " + new Date().toLocaleTimeString())
 
-
+/** @type  {HTMLElement} root  */
 var root = document.body ; 
 
 root.style.marginLeft = "10px"
@@ -14,7 +15,7 @@ root.style.paddingLeft = "10px"
 //=========================================================================
 var form1 = add_Form("index_do.php")
 var tx  = add_textNode("เลือกจังหวัด");
-var d  = add_Div("Hello Div");
+var d  = add_Div();
 var s1 = add_SELECT ("sel_prov"
                 ,[
                 {text:"AAA",value:"A"}     
@@ -146,7 +147,9 @@ var props_range = {"value":20
 var events_range    =  {"change": 
                             function(ev){ 
                                 var st = document.getElementById("tx_stat") 
-                                var val1 = document.getElementById("range1").value
+                                /** @type {HTMLInputElement} html_range */
+                                var html_range = (/** @type {HTMLInputElement} */document.getElementById("range1"))
+                                var val1 = html_range.value
                                 st.innerHTML = val1   
                                 //alert('ok'); 
                             }

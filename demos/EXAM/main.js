@@ -1,3 +1,5 @@
+//@ts-check
+
 set_page_title("ท่องศัพท์ " + new Date().toLocaleTimeString())
 
 //var root = document.body ;
