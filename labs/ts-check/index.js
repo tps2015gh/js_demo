@@ -41,8 +41,12 @@ class Content{
     build(){
         /** @type {HTMLElement} root  */
         var root = getRoot()
+        root.appendChild( newBr()  )
         root.appendChild( newButton("Button1") )
+        root.appendChild( newBr()  )
         root.appendChild( newButton("Button2") )                
+        root.appendChild( newBr()  )
+        root.appendChild( newButton("Button3") )                
     }
 }
 
