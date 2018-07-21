@@ -19,14 +19,19 @@ function getRoot(){
     return root  
 }
 /**
- * @type {HTMLButtonElement}
  * @param {string}  text 
  */
 function newButton(text){
-    /** @type {HTMLElement} */
+    /** @type {HTMLButtonElement} */
     var bt = document.createElement("button")
     bt.innerText = text  
     return bt  
+}
+
+function newBr(){
+    /** @type {HTMLBRElement} */
+    var br = document.createElement("br")
+    return br 
 }
 
 
@@ -42,8 +47,6 @@ class Content{
 }
 
 class Page{
-    /** @type {Content} */
-    ct  ;
     
     /** @param {Content} ct  */
     constructor(ct ){
