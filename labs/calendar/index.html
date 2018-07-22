@@ -19,6 +19,7 @@
         background-color: thistle;
         width: 80%;
     }
+    li[active='true'] {background-color:yellow;}
 </style>
 </head>
 
@@ -35,6 +36,34 @@
 
         /** @type {HTMLDivElement} border */
         //@ts-ignor spell_element
+
+        var tx1 
+
+        function set_day(clicked_cell ){
+            console.log("setday" + clicked_cell)
+            var cells =  document.querySelectorAll("li")
+            cells.forEach(x => { x.setAttribute("active","false");} )  
+            clicked_cell.setAttribute("active","true");
+            var daytext = clicked_cell.getAttribute("daytext")
+            border.setAttribute("daytext",daytext)
+            var daytext00 = daytext  
+            console.log(daytext) 
+            if (daytext.length < 2 ){
+                daytext00 = "0" + daytext 
+            }
+           // daytext00 = "12345"
+            
+            tx1.innerHTML =  daytext00 
+                                + "/xx/xxxx"
+        }
+
+        function add_date_text(idname) {
+            var tx  = document.createElement("div")
+            tx.setAttribute("style","border:1px solid silver;display:table-row")
+            tx.innerHTML = "id:" + idname
+            tx.setAttribute("id",idname )
+            return tx  
+        }
 
         function add_calendar() {
             var border = document.createElement("div")
@@ -74,16 +103,22 @@
                         + "width:13.6%;height:40px;"
                         + "background-color:white;"
                     cell.setAttribute("style", "display:table-cell;border:1px solid;width:80px;text-align:center;")
+                    
                     row.appendChild(cell)
                 }
                 console.log("add row ")
                 border.appendChild(row)
+
             }
 
             // CLEAR  TEXT  
             for (var i = 1; i <= 35; i++) {
                 border.querySelector("[num='" + i + "']").innerHTML = "..";
             }
+
+            // add text date 
+            tx1 = add_date_text("tx1")
+            border.appendChild(tx1)
 
             return border
         }
@@ -94,13 +129,21 @@
          */
         function set_calendar_text(border ,first_daynum,day_in_month){
             for (var i = first_daynum, daytext = 1; i < first_daynum + day_in_month; i++ , daytext++) {
-                border.querySelector("[num='" + i + "']").innerHTML = daytext + "";
+                var cell = border.querySelector("[num='" + i + "']")
+                cell.innerHTML = daytext + "";
+                cell.setAttribute("daytext",daytext+"")
+                cell.setAttribute("active","true")
+                cell.setAttribute("onclick","set_day(this)")
+               // cell.setAttribute("style","")
             }            
         }
         var root = document.getElementById("root")
         var border = add_calendar()
         root.appendChild(border)
         set_calendar_text(border,3,30)
+
+        var active_cell = border.querySelector("[daytext='20']")
+        set_day(active_cell)
 
     </script>
 
