@@ -19,6 +19,8 @@
         background-color: thistle;
         width: 80%;
     }
+    li[daynum='6'] {background-color:pink;}
+    li[daynum='7'] {background-color:pink;}
     li[active='true'] {background-color:yellow;}
 </style>
 </head>
@@ -34,10 +36,12 @@
     <script>
         //@ts-check
 
-        /** @type {HTMLDivElement} border */
+        /** @type {HTMLSpanElement} border */
+        /** @type {HTMLInputElement} tx1_ymd */
         //@ts-ignor spell_element
 
         var tx1 
+        var tx1_ymd 
 
         function set_day(clicked_cell ){
             console.log("setday" + clicked_cell)
@@ -53,24 +57,44 @@
             }
            // daytext00 = "12345"
             
-            tx1.innerHTML =  daytext00 
-                                + "/xx/xxxx"
+            tx1.innerHTML =  daytext00 + "/xx/xxxx"
+            tx1_ymd.value =  daytext00 + "/xx/xxxx"
         }
 
         function add_date_text(idname) {
-            var tx  = document.createElement("div")
-            tx.setAttribute("style","border:1px solid silver;display:table-row")
+            var tx  = document.createElement("span")
+            tx.setAttribute("style","border:1px solid silver;display:table-cell")
             tx.innerHTML = "id:" + idname
             tx.setAttribute("id",idname )
             return tx  
         }
+        function add_date_text_ymd(idname) {
+            var inp  = document.createElement("input")
+            inp.setAttribute("type","text")
+            var style1 = "background-color:lightyellow;text-align:center;"
+                            + "width:100px;"
+            inp.setAttribute("style",style1)
+            inp.setAttribute("readonly","readonly")
+            var ymd = "xxxx/xx/xx"
+            inp.setAttribute("value",ymd ) 
+            //inp.setAttribute("style","border:1px solid silver;display:table-row")
+            inp.setAttribute("id",idname + "_ymd" )
+            return inp  
+        }
+
 
         function add_calendar() {
             var border = document.createElement("div")
             border.className = "calendar_border"
-            border.setAttribute("style", "display:table")
+            border.setAttribute("style", "display:table;border:1px solid silver;padding:2px;")
             var num = 0
+            //======== HEADER  ==================   
+            var title = document.createElement("div")    
+            title.setAttribute("style","display:table-caption;background-color:darkblue;color:white;width:100%;")
+            title.innerHTML = "&nbsp; ปฏิทิน เดือน xx  ปี xxxx"
+            border.appendChild(title)
 
+            //======== HEADER  ==================
             var row_hd = document.createElement('ul')
             row_hd.setAttribute("style", "display:table-row;background-color:orange;")
             var text_hds = ['จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา']
@@ -119,6 +143,9 @@
             // add text date 
             tx1 = add_date_text("tx1")
             border.appendChild(tx1)
+
+            tx1_ymd = add_date_text_ymd("tx1")
+            border.appendChild(tx1_ymd)
 
             return border
         }
