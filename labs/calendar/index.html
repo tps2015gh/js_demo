@@ -32,23 +32,40 @@
     //@ts-ignor spell_element
     var  border =  document.createElement("div")
     border.className = "calendar_border"
+    border.setAttribute("style","display:table")
     var num = 0
+
+    var row_hd = document.createElement('ul')
+        row_hd.setAttribute("style","display:table-row;background-color:orange;")
+    var text_hds = ['จ','อ','พ','พฤ','ศ','ส','อา']
+    text_hds.forEach(element => {
+        var cell = document.createElement("li")
+        cell.innerHTML = element 
+        cell.setAttribute("style","display:table-cell;text-align:center;border:1px solid") 
+        row_hd.appendChild(cell )
+    });
+    console.log(row_hd)
+    border.appendChild(row_hd)
+
+
+    // DATA 
     for(var y = 0; y< 5 ; y ++){
-        var row = document.createElement('div')
-            row.setAttribute("style","padding:2px;width:500px;height:40px;background-color:orange;")
+        var row = document.createElement('ul')
+            row.setAttribute("style","display:table-row;")
         for( var x = 0 ; x <7 ; x++ ){
             num = num+1 
-            var cell = document.createElement("span")
+            var cell = document.createElement("li")
             cell.className = "calendar_cell"
             cell.setAttribute("x",x +"")
             cell.setAttribute( "y",y  +"" ) 
+            cell.setAttribute("daynum" , (x + 1) +"" )
             cell.innerHTML = x + "," + y + "/"+num
             cell.setAttribute("num", num+ "" )
-            var style ="padding:1px;left:" + x  +"px;top:" + y + "px;"
+            var style ="padding:1px;"
                         +   "border:1px solid silver;"
-                        +   "width:100px;height:50px;" 
+                        +   "width:13.6%;height:40px;" 
                         +   "background-color:white;"
-            cell.setAttribute("style",style)
+            cell.setAttribute("style","display:table-cell;border:1px solid;width:80px;text-align:center;")
             row.appendChild(cell)            
         }
         console.log("add row ")
@@ -57,6 +74,18 @@
     
     var root = document.getElementById("root")
     root.appendChild(border)
+
+    for(var i = 1 ; i <= 35 ;i++ ){
+        border.querySelector("[num='"+ i + "']").innerHTML = "..";
+    }
+    var cur_num = 3;
+    var day_in_month = 30; 
+
+    for(var i = cur_num , daytext = 1  ; i < cur_num + day_in_month ; i++ , daytext++ )  {
+        border.querySelector("[num='"+ i + "']").innerHTML =  daytext + "" ;
+    }
+
+
 
 </script>
 
