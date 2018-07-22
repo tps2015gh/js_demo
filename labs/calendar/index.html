@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script> -->
+
+    <script src="../../lib/js_ui_builder.js"></script>
+    <!-- <script src="./basic2/todo.js"></script> -->
+    <!-- <link rel="stylesheet" href="./basic2/todo.css"> -->
+  </head>
+
+<style>
+#form1   {background-color:thistle;width:80%;}
+</style>
+</head>
+<body>
+    index.html (labs\calendar)
+
+   
+
+    <div id="root"></div>
+    <!-- <script src="./index.js"></script> -->
+
+<script>
+    //@ts-check
+
+    /** @type {HTMLDivElement} border */
+    //@ts-ignor spell_element
+    var  border =  document.createElement("div")
+    border.className = "calendar_border"
+    var num = 0
+    for(var y = 0; y< 5 ; y ++){
+        var row = document.createElement('div')
+            row.setAttribute("style","padding:2px;width:500px;height:40px;background-color:orange;")
+        for( var x = 0 ; x <7 ; x++ ){
+            num = num+1 
+            var cell = document.createElement("span")
+            cell.className = "calendar_cell"
+            cell.setAttribute("x",x +"")
+            cell.setAttribute( "y",y  +"" ) 
+            cell.innerHTML = x + "," + y + "/"+num
+            cell.setAttribute("num", num+ "" )
+            var style ="padding:1px;left:" + x  +"px;top:" + y + "px;"
+                        +   "border:1px solid silver;"
+                        +   "width:100px;height:50px;" 
+                        +   "background-color:white;"
+            cell.setAttribute("style",style)
+            row.appendChild(cell)            
+        }
+        console.log("add row ")
+        border.appendChild(row)
+    }
+    
+    var root = document.getElementById("root")
+    root.appendChild(border)
+
+</script>
+
+</body>
+</html>
