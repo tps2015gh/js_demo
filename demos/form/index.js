@@ -12,6 +12,9 @@ var root = document.body ;
 root.style.marginLeft = "10px"
 root.style.paddingLeft = "10px"
 
+var navdom_test1 = getdom_nav_test1()
+root.appendChild( navdom_test1 )
+
 //=========================================================================
 var form1 = add_Form("index_do.php")
 var tx  = add_textNode("เลือกจังหวัด");
