@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>svg1mouseup
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test Animation by JS and Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="app.js"></script>
+</head>
+<style> 
+    #c1 {fill:red;}
+    #c1:hover {fill:orange;border:2px solid red;}
+</style>
+<body onload="onfinishload()">
+    Tests Animate <br>
+    <br>cx=<span id="c1cx">00</span>
+    <br>
+    <svg id="svg1" width="300" height="300"  style="background-color: honeydew; " 
+            onmouseup="svg1mouseup()" >
+        <g id="g1" transform=" translate(0 300) scale(1 -1)" style="cursor:pointer;" >
+            <circle id=c1 cx="10" cy="10"  r="20"  ></circle>
+
+            <circle id=food cx="200" cy="110"  r="10" fill="blue" ></circle>
+             
+            
+            <g id="foodsmell" transform="" style="cursor:pointer;" >
+                </g>
+                
+            <g transform="translate(150 60 ) scale(1 -1)">    
+                <text x="0" y="0" fill="blue">Food with smell</text>
+            </g>
+            <g id="c1name" transform="translate(100 100 ) scale(1 -1)">    
+                    <text x="0" y="0" fill="blue">Dog c1</text>
+            </g>           
+        </g>
+
+        </g>
+    </svg>
+    
+</body>
+</html>
