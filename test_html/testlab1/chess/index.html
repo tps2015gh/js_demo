@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <style>
+        .board {
+            border: 1px solid silver;
+            background-color: antiquewhite;
+        }
+
+        rect.base_dark {
+            fill: #d18b47;
+            stroke: magenta;
+        }
+
+        rect.base_light {
+            fill: #ffce9e ;
+            stroke: magenta;
+        }
+    </style>
+
+    <svg width="500" height="500" class="board">
+        <g transform="scale(0.5 0.5) translate(100 100)">
+            <g id="loop_y">
+                <line x1="0" y1="0" x2="800" y2="0" stroke="red"></line>
+                <line x1="0" y1="100" x2="800" y2="100" stroke="red"></line>
+                <line x1="0" y1="200" x2="800" y2="200" stroke="red"></line>
+                <line x1="0" y1="300" x2="800" y2="300" stroke="red"></line>
+                <line x1="0" y1="400" x2="800" y2="400" stroke="red"></line>
+                <line x1="0" y1="500" x2="800" y2="500" stroke="red"></line>
+                <line x1="0" y1="600" x2="800" y2="600" stroke="red"></line>
+                <line x1="0" y1="700" x2="800" y2="700" stroke="red"></line>
+                <line x1="0" y1="800" x2="800" y2="800" stroke="red"></line>
+            </g>
+            <g id="loop_x">
+                <line x1="0" y1="0" x2="0" y2="800" stroke="red"></line>
+                <line x1="100" y1="0" x2="100" y2="800" stroke="red"></line>
+                <line x1="200" y1="0" x2="200" y2="800" stroke="red"></line>
+                <line x1="300" y1="0" x2="300" y2="800" stroke="red"></line>
+                <line x1="400" y1="0" x2="400" y2="800" stroke="red"></line>
+                <line x1="500" y1="0" x2="500" y2="800" stroke="red"></line>
+                <line x1="600" y1="0" x2="600" y2="800" stroke="red"></line>
+                <line x1="700" y1="0" x2="700" y2="800" stroke="red"></line>
+                <line x1="800" y1="0" x2="800" y2="800" stroke="red"></line>
+            </g>s
+            <g id="rec">
+
+                <rect x="0" y="0" width="100" height="100" class="base_light"></rect>
+                <rect x="0" y="100" width="100" height="100" class="base_dark"></rect>
+                <rect x="0" y="200" width="100" height="100" class="base_light"></rect>
+                <rect x="0" y="300" width="100" height="100" class="base_dark"></rect>
+                <rect x="0" y="400" width="100" height="100" class="base_light"></rect>
+                <rect x="0" y="500" width="100" height="100" class="base_dark"></rect>
+                <rect x="0" y="600" width="100" height="100" class="base_light"></rect>
+                <rect x="0" y="700" width="100" height="100" class="base_dark"></rect>
+                <rect x="100" y="0" width="100" height="100" class="base_dark"></rect>
+                <rect x="100" y="100" width="100" height="100" class="base_light"></rect>
+                <rect x="100" y="200" width="100" height="100" class="base_dark"></rect>
+                <rect x="100" y="300" width="100" height="100" class="base_light"></rect>
+                <rect x="100" y="400" width="100" height="100" class="base_dark"></rect>
+                <rect x="100" y="500" width="100" height="100" class="base_light"></rect>
+                <rect x="100" y="600" width="100" height="100" class="base_dark"></rect>
+                <rect x="100" y="700" width="100" height="100" class="base_light"></rect>
+                <rect x="200" y="0" width="100" height="100" class="base_light"></rect>
+                <rect x="200" y="100" width="100" height="100" class="base_dark"></rect>
+                <rect x="200" y="200" width="100" height="100" class="base_light"></rect>
+                <rect x="200" y="300" width="100" height="100" class="base_dark"></rect>
+                <rect x="200" y="400" width="100" height="100" class="base_light"></rect>
+                <rect x="200" y="500" width="100" height="100" class="base_dark"></rect>
+                <rect x="200" y="600" width="100" height="100" class="base_light"></rect>
+                <rect x="200" y="700" width="100" height="100" class="base_dark"></rect>
+                <rect x="300" y="0" width="100" height="100" class="base_dark"></rect>
+                <rect x="300" y="100" width="100" height="100" class="base_light"></rect>
+                <rect x="300" y="200" width="100" height="100" class="base_dark"></rect>
+                <rect x="300" y="300" width="100" height="100" class="base_light"></rect>
+                <rect x="300" y="400" width="100" height="100" class="base_dark"></rect>
+                <rect x="300" y="500" width="100" height="100" class="base_light"></rect>
+                <rect x="300" y="600" width="100" height="100" class="base_dark"></rect>
+                <rect x="300" y="700" width="100" height="100" class="base_light"></rect>
+                <rect x="400" y="0" width="100" height="100" class="base_light"></rect>
+                <rect x="400" y="100" width="100" height="100" class="base_dark"></rect>
+                <rect x="400" y="200" width="100" height="100" class="base_light"></rect>
+                <rect x="400" y="300" width="100" height="100" class="base_dark"></rect>
+                <rect x="400" y="400" width="100" height="100" class="base_light"></rect>
+                <rect x="400" y="500" width="100" height="100" class="base_dark"></rect>
+                <rect x="400" y="600" width="100" height="100" class="base_light"></rect>
+                <rect x="400" y="700" width="100" height="100" class="base_dark"></rect>
+                <rect x="500" y="0" width="100" height="100" class="base_dark"></rect>
+                <rect x="500" y="100" width="100" height="100" class="base_light"></rect>
+                <rect x="500" y="200" width="100" height="100" class="base_dark"></rect>
+                <rect x="500" y="300" width="100" height="100" class="base_light"></rect>
+                <rect x="500" y="400" width="100" height="100" class="base_dark"></rect>
+                <rect x="500" y="500" width="100" height="100" class="base_light"></rect>
+                <rect x="500" y="600" width="100" height="100" class="base_dark"></rect>
+                <rect x="500" y="700" width="100" height="100" class="base_light"></rect>
+                <rect x="600" y="0" width="100" height="100" class="base_light"></rect>
+                <rect x="600" y="100" width="100" height="100" class="base_dark"></rect>
+                <rect x="600" y="200" width="100" height="100" class="base_light"></rect>
+                <rect x="600" y="300" width="100" height="100" class="base_dark"></rect>
+                <rect x="600" y="400" width="100" height="100" class="base_light"></rect>
+                <rect x="600" y="500" width="100" height="100" class="base_dark"></rect>
+                <rect x="600" y="600" width="100" height="100" class="base_light"></rect>
+                <rect x="600" y="700" width="100" height="100" class="base_dark"></rect>
+                <rect x="700" y="0" width="100" height="100" class="base_dark"></rect>
+                <rect x="700" y="100" width="100" height="100" class="base_light"></rect>
+                <rect x="700" y="200" width="100" height="100" class="base_dark"></rect>
+                <rect x="700" y="300" width="100" height="100" class="base_light"></rect>
+                <rect x="700" y="400" width="100" height="100" class="base_dark"></rect>
+                <rect x="700" y="500" width="100" height="100" class="base_light"></rect>
+                <rect x="700" y="600" width="100" height="100" class="base_dark"></rect>
+                <rect x="700" y="700" width="100" height="100" class="base_light"></rect>
+            </g>
+        </g>
+    </svg>
+    <script>
+        var count = 0;
+        for (var x = 0; x < 800; x += 100) {
+            count = (x / 100) % 2
+            //console.log(count)
+            for (var y = 0; y < 800; y += 100) {
+                //console.log(count)
+                count += 1
+                //console.log(count)
+                if (count % 2 == 0) {
+                    var s = '<rect x="' + x + '" y="' + y + '" width="100" height="100" class="base_dark"></rect>'
+                    console.log(s)
+                } else {
+                    var s = '<rect x="' + x + '" y="' + y + '" width="100" height="100" class="base_light"></rect>'
+                    console.log(s)
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
