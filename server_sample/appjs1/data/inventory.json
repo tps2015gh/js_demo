@@ -1,0 +1,23 @@
+[
+    {
+        "product": "pen",
+        "unit": "item",
+        "amount": 123,
+        "order_price": 4.0,
+        "buy_price": 5.0
+    },
+    {
+        "product": "pencil",
+        "unit": "item",
+        "amount": 20,
+        "order_price": 3.0,
+        "buy_price": 4.0
+    },
+    {
+        "product": "paper",
+        "unit": "pack",
+        "amount": 50,
+        "order_price": 60,
+        "buy_price": 85
+    }
+]
