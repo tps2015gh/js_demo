@@ -1,7 +1,7 @@
 ## Welcome to GitHub Pages
 
-### NOW , UNDER FIND TARGET , T__T    
-### NOW , AS my PLAYGROUND FOR javascript technology 
+### NOW , UNDER FIND TARGET ,  (T__T)
+### NOW , AS my PLAYGROUND FOR javascript technology  
 
 - code/library for create HTML screen moc-up  
 - use with  boostrap  CDN  
