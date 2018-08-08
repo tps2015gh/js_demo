@@ -62,6 +62,15 @@ app.get('/api/',function(req , res){
     res.sendFile( __dirname+ "/application/form/" + "api.html" );
 })
 
+app.get('/add/:a/:b/', function (req, res) {
+    var p = req.params 
+    
+    res.send('/add/ a=' + p.a + ", b="  
+                        + p.b + "/<br><br><br> " 
+                        + p.a + "+" + p.b + "== " + (p.a+p.b)   )
+    console.log(p)
+})
+
 
 app.get('/api/inventory',function(req , res){
     var fs = require("fs")
@@ -94,7 +103,11 @@ app.get('/api/inventory/sum_order_money',function(req , res){
     })
 })
 
-var server = app.listen(8081, function () {
+
+
+
+//var server = app.listen(8081, function () {
+var server = app.listen(8088, function () {
     var host = server.address().address
     var port = server.address().port
 
