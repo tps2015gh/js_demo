@@ -5,5 +5,12 @@ npm audit
 npm install express -g 
 npm install supervisor -g 
 
-REM  supervisor server.js
-REM  http://localhost:3000
+REM FOR TEST 
+npm install -g jasmine-node
+
+REM INSTALL SWIG TEMPLATE ENGINE 
+npm install swig
+
+REM INSTALL consolidate for MVC 
+npm install consolidate
+

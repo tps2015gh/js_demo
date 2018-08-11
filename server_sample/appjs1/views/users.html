@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+users.html
+{% endblock %}
+
+
+{% block header %}
+HEADER
+{% endblock %}
+
+{% block body %}
+test 
+this is users.html ( in view , twig Engine)
+<br>
+<hr>
+<br>
+parameter 
+<br> 
+title = <font color=red>{{title}}</font>
+
+<ul>
+    {% for name in users %}
+        <li>{{ name }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

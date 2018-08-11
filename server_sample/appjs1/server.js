@@ -82,6 +82,38 @@ app.get('/api/inventory',function(req , res){
     })
 })
 
+
+// REF  ==>  Thai Language 
+// https://devahoy.com/posts/node-template-engine/
+// https://stackoverflow.com/questions/16111386/error-cannot-find-module-html
+// https://www.npmjs.com/package/consolidate
+// https://twig.symfony.com/
+// https://stackoverflow.com/questions/28266446/how-to-render-multiple-views-using-nodeexpress
+
+//var swig = require('swig');
+//app.engine('html', swig.renderFile);
+//app.set('view engine', 'html');
+
+var cons = require('consolidate');
+app.engine('html', cons.swig);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+ 
+// app.get('/timeline1_sample',function(req,res){
+//     res.render('timeline1_sample.html', { user: 'tobi' }, function(err, html){
+//       if (err) throw err;
+//       console.log("html= " + html);
+//     });
+// })
+
+app.get('/users', function(req, res){
+    //res.render("_banner",{})
+    res.render('users', {
+      title: 'Users',
+      users : ['AAA' , 'BBB' ,'CCC ', 'DDD'],
+    });
+  });
+
 app.get('/api/inventory/sum_order_money',function(req , res){
     var fs = require("fs")
     var path1 =  __dirname + "/data/inventory.json" 
