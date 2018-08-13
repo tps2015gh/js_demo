@@ -1,0 +1,12 @@
+extends layout
+
+#  - var ps = [{id:1,name:'name1'}]
+
+block content
+  form(action='province_do/',method='POST',class='form')
+    h1= title
+    p Welcome to #{title}
+    // #{ps}
+    | คุณเลือกจังหวัด 
+    span(class="label label-info") #{prov_code}
+    br
