@@ -16,7 +16,7 @@
 - ทดสอบ มากมาย technology javascript อื่นๆ อาจแบ่งไปอยู่ใน หลายๆ folder 
 - ไมได้จัดเรียงเป็นระเบียบนัก 
 
-- มีเพิ่ม javascript openstreetmap เมื่อวันที่ 2561-08-18    https://github.com/tps2015gh/js_ui_builder/blob/master/test_googlemap/open_street_map.PNG?raw=true   
+- มีเพิ่ม javascript ตัวอย่างการใช้งาน openstreetmap เมื่อวันที่ 2561-08-18    https://github.com/tps2015gh/js_ui_builder/blob/master/test_googlemap/open_street_map.PNG?raw=true   
 
 
 
