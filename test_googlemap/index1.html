@@ -1,0 +1,240 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+
+
+</head>
+<style>
+    /* #mapid {
+        height: 380px;
+    } */
+</style>
+
+<body onload="onload()">
+
+
+
+    <div id="mapid" style=" height: 500px;"></div>
+    <br> ข้อมูลและ API จาก  OpenStreetMap / Leaflet / MapBox 
+    <br>
+    สถานการณ์ระดับน้ำในแม่น้ำ ล่าสุด 1 กันยายน 2561    
+    <br> <a href='http://www.thaiwater.net/hourlyreport.php'>
+        http://www.thaiwater.net/hourlyreport.php</a>
+</body>
+<script>
+    var loc = {
+        chonburi: {
+            Merng : {
+                BangPlaSoi  :  [13.364,100.987]
+            }
+        }  ,
+        nontaburi: {
+            TriNoi: [14.085, 100.292]
+            , Merng:
+            {
+                SuanYai: [13.842, 100.494
+                ]
+            }
+        }
+        ,canchanaburi :  [14.228	,99.187
+]
+    }
+    var gb = {
+        mymap: null,
+        mapboxid: {
+            streets: 'mapbox.streets',
+            light: 'mapbox.light'
+            , outdoors: 'mapbox.outdoors'
+            , commic: 'mapbox.comic'
+        },
+    }
+    var Budget = {
+        nontaburi: 258665800
+        , chonburi: 351295000
+        ,canchanaburi :  275813700
+
+    }
+
+    class  lookup_pos {
+        ต_ศาลาลำดวน(){ return  [13.838	,101.964 , 'วิกฤต'] } 
+        ต_กลัดหลวง(){ return  [12.801,	99.732 ,'วิกฤต'] } 
+    }
+
+    var   loc_rivers = [
+        ["ต.ศาลาลำดวน",  [13.838	,101.964] , "วิกฤต"]  , 
+        ["ต.กลัดหลวง",  [12.801,	99.732] ,"วิกฤต"] , 
+        ["ต.องครักษ์",  [14.731	,100.398] ,"วิกฤต"] , 
+        ["อ.บ้านดุง",[17.684,103.259],"วิกฤต"] , 
+        ["ต.โพนงาม",[16.316,103.658],"วิกฤต"] , 
+        ["ต.บางเคียน" ,[15.806,100.176] , "เฝ้าระวังพิเศษ"] ,
+        ["ต.ธรรมามูล" ,[15.264,100.133] , "เฝ้าระวังพิเศษ"] ,
+        ["ต.แสลงพัน" ,[14.918,103.545] , "เฝ้าระวัง"] ,
+        ["ต.รังสิต" ,[14.018,100.731],"เฝ้าระวัง"],
+        ["ต.หนองบัว อ.บ้านแพ้ว(สมุทรสาคร)" ,[13.598,100.075],"เฝ้าระวัง"],
+    ]
+
+    var loc_dams  = [
+        ["เขื่อนน้ำอูน" ,[17.2340161,103.7309203],"red","109",520  /* ล้านลูกบาตรเมตร*/]
+        ,["เขื่อนขุนด่าน" ,[14.3152842,101.3201283],"red","87",224 /* ล้านลูกบาตรเมตร*/  ]
+        ,["เขื่อนวชิราลงกรณ " ,[15.0588642,98.6054593],"orange","94",8860 /* ล้านลูกบาตรเมตร*/ ]
+        ,["เขื่อนศรีนครินทร์ " ,[14.413634,99.1120223],"red","91",17745 /* ล้านลูกบาตรเมตร*/ ]
+        ,["เขื่อนภูมิพล " ,[17.2421391,98.9337393],"blue","61",13462 /* ล้านลูกบาตรเมตร*/ ]
+    ]
+
+    function onload() {
+        console.log(loc.chonburi)
+
+        console.log(L)
+
+        // set center 
+        gb.mymap = L.map('mapid').setView(loc.nontaburi.Merng.SuanYai, 13 - 7);
+        loadLayer(gb.mapboxid.outdoors)
+
+
+        console.log( loc_rivers )
+        loc_rivers.forEach(( element   ) => {
+                let tname =  element[0] 
+                let loc1 = element[1] 
+                let status_tx = element[2]
+                console.log( " addMarker location = " + loc1  )
+                console.log( " addMarker location = " + loc1 + " text = " + tname   )
+                let txt_popup =  tname + "/" + status_tx     
+                let factor = 0.1     
+                let size  = 100000         
+                addMarkerCircle( loc1 ,  status_tx  ) 
+                addCircle_status_river(loc1, size * factor , txt_popup,status_tx)
+        });
+
+        loc_dams.forEach(( element ) => {
+                let loc1 = element[1] 
+                console.log( " addMarker location = " + loc1  )
+                let tname =  element[0] 
+                let colorname = element[2]
+                let percent = element[3]
+                let size_m3 = element[4]
+                console.log(element)
+                console.log( " addMarker location = " + loc1 + " text = " + tname   )
+                //let txt_popup =  tname + "/" + status_tx     
+                let factor = 2     
+                let size  =  size_m3  * factor 
+                let r = factor * size
+                console.log (" r = " + size_m3 + "* " +  factor )          
+                let status_tx = tname + "/"+ size_m3 + " m3"
+                addMarker( loc1 ,  status_tx ) 
+                addCircle_dam(loc1, r  , colorname,  status_tx ,   status_tx)
+        });
+
+        
+        var factor = 0.0001;
+
+        //  addCircle(loc.nontaburi.Merng.SuanYai, Budget.nontaburi * factor , "นนทบุรี งบ60 <br>" + Budget.nontaburi.toLocaleString())
+        //  addCircle(loc.chonburi.Merng.BangPlaSoi, Budget.chonburi * factor , "ชลบุรี งบ60 <br>" + Budget.chonburi.toLocaleString())
+        //  addCircle(loc.canchanaburi, Budget.canchanaburi * factor , "กาญจนบุรี งบ60 <br>" + Budget.canchanaburi.toLocaleString())
+
+        // addCircle(loc.nontaburi.Merng.SuanYai,  400 , "นนทบุรี " + Budget.nontaburi)
+        // addCircle(loc.chonburi.Merng.BangPlaSoi, 400 , "ชลบุรี" + Budget.chonburi)
+
+
+        //console.log("Run Additional")
+        //var polygon = addPoly(mymap)
+        //console.log("add bining")
+        //binding(marker, polygon)
+        console.log("OK");
+    }
+    function addMarker(location, htm) {
+        var marker = L.marker(location).addTo(gb.mymap);
+        marker.bindPopup(htm)
+    }
+    function addMarkerCircle(location, htm) {
+        var marker = L.circleMarker(location).addTo(gb.mymap);
+        marker.bindPopup(htm)
+    }
+    function loadLayer(mapboxid_const) {
+        console.log("Load Layer")
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: mapboxid_const
+        }).addTo(gb.mymap);
+    }
+    function addCircle(location, radious1, htm) {
+        var circle = L.circle(location, {
+            color: 'lightblue',
+            fillColor: '#0000f3',
+            fillOpacity: 0.4,
+            radius: radious1
+        }).addTo(gb.mymap);
+        circle.bindPopup(htm)
+    }
+    function addCircle_status_river(location, radious1, htm,status) {
+        let fillcolor = "white";
+        let color = "white";
+        if(status == 'วิกฤต'){
+            fillcolor = "red"
+            color = "red";
+        }else if(status == "เฝ้าระวังพิเศษ") {
+            fillcolor = "orange"
+            color = "orange";
+        }else if(status == "เฝ้าระวัง") {
+            console.log("FAW RA WANG")
+            fillcolor = "yellow"
+            color = "yellow";
+        }else{
+            fillcolor = "lightblue"
+            color = "lightblue"
+        }
+        console.log("fillcolor="+ fillcolor + " htm = " + htm + " status="+ status)
+        var circle = L.circle(location, {
+            color: color,
+            fillColor:  fillcolor,
+            fillOpacity: 0.4,
+            // fillOpacity: 0.9,
+            radius: radious1
+        }).addTo(gb.mymap);
+        circle.bindPopup(htm)
+    }
+    function addCircle_dam(location, radious1,color, htm,status) {
+        let fillcolor = color ;
+        //let color = color ;
+        console.log("fillcolor="+ fillcolor + " htm = " + htm + " status="+ status)
+        var circle = L.circle(location, {
+            color: color,
+            fillColor:  fillcolor,
+            fillOpacity: 0.4,
+            // fillOpacity: 0.9,
+            radius: radious1
+        }).addTo(gb.mymap);
+        circle.bindPopup(htm)
+    }
+
+    function addPoly() {
+        var polygon = L.polygon([
+            [51.509, -0.08],
+            [51.503, -0.06],
+            [51.51, -0.047]
+        ]).addTo(gb.mymap);
+        return polygon
+    }
+    function binding(marker, polygon) {
+        marker.bindPopup("<b>Hello world! <br> สวัสดีชาวโลกจ้า</b><br>I am a popup .").openPopup();
+        //circle.bindPopup("I am a circle.");
+        polygon.bindPopup("I am a polygon. <br>ฉันคือหลายๆเหลี่ยม");
+    }
+
+</script>
+
+
+</html>
