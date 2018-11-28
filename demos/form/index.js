@@ -9,11 +9,10 @@ set_page_title("ทดสอบข้อมูล " + new Date().toLocaleTimeStr
 /** @type  {HTMLElement} root  */
 var root = document.body ; 
 
+
 root.style.marginLeft = "10px"
 root.style.paddingLeft = "10px"
 
-var navdom_test1 = getdom_nav_test1()
-root.appendChild( navdom_test1 )
 
 //=========================================================================
 var form1 = add_Form("index_do.php")
@@ -55,31 +54,9 @@ sel_amphur.addEventListener("change",
 )
 //=========================================
 
-//=========================================
-var banner = add_IMG("../../img/banner_nb.jpg");
-banner.style.width = "100%"
-banner.style.height= "80px"
-form1.appendChild(banner)
-//form1.appendChild(add_BR())
-//=========================================
 
-var nav = add_NAV(
-    ["#","tools.html","data.html"]
-    , ["Home","Tools","DATA"]
-    ,0 
-);
-console.log(nav)
-form1.appendChild(nav)
 
 //=========================================
-var links = ['#','#','#']
-var texts = ["เมนู 1","เมนู 2","menu 3"]
-var dropdown = add_dropdown("Button Menu" ,links ,texts)
-console.log(dropdown)
-
-//form1.appendChild(dropdown)
-
-nav.appendChild(dropdown)
 //=========================================
 
 var row1 = spell_element("div","row")
@@ -189,6 +166,17 @@ form1.appendChild (row_submit)
 
 //=========================================
 
+var dropdown = add_dropdown("Button Menu" ,['#','#','#'] ,["เมนู 1","เมนู 2","menu 3"])        
+        document.container_fluid().doc
+        .add_nav(["index.html","tools.html","#"],["Home","Tools","Data"] , 0 ,"background-color:lightgreen;").doc
+        .img("../../img/banner_nb.jpg","banner").doc
+    
+        .container().doc
+        .add_nav_default("กลับหน้าแรก", "index.html" , ["#","#"],["Tools2","About"]).doc
+        .div("html","divtx").div
+            .textNode("Use Boostrap 4.0 , ขณะนี้เวลา  ").div
+            .timeNode(); 
+        //divtx.appendChild( add_timeNode ()) ;
 
-root.appendChild(form1)
+// root.appendChild(form1)
 
