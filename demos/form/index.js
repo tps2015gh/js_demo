@@ -1,3 +1,4 @@
+
 //@ts-check
 
 //var body = document.body;
@@ -167,16 +168,23 @@ form1.appendChild (row_submit)
 //=========================================
 
 var dropdown = add_dropdown("Button Menu" ,['#','#','#'] ,["เมนู 1","เมนู 2","menu 3"])        
-        document.container_fluid().doc
-        .add_nav(["index.html","tools.html","#"],["Home","Tools","Data"] , 0 ,"background-color:lightgreen;").doc
-        .img("../../img/banner_nb.jpg","banner").doc
+    
+var d  = document.container_fluid().doc
+        .add_nav(["index.html","tools.html","#"],["Home","Tools","Data"] , 0 ,"background-color:lightgreen;")
+        .nav.add_child(dropdown)
+        console.log( d )
+        
+        document.img("../../img/banner_nb.jpg","banner").doc
     
         .container().doc
-        .add_nav_default("กลับหน้าแรก", "index.html" , ["#","#"],["Tools2","About"]).doc
-        .div("html","divtx").div
+        .add_nav_default("กลับหน้าแรก", "index.html" , ["#","#"],["Tools2","About"])
+//        .nav.add_child( dropdown )
+        
+
+        
+        document.div("html","divtx").div
             .textNode("Use Boostrap 4.0 , ขณะนี้เวลา  ").div
             .timeNode(); 
-        //divtx.appendChild( add_timeNode ()) ;
 
 // root.appendChild(form1)
 
