@@ -47,8 +47,6 @@ s1.addEventListener("change",
     }
 )
 
-
-
 sel_amphur.setAttribute("id","id_amphur")
 sel_amphur.addEventListener("change",
         function(ev){
@@ -56,8 +54,6 @@ sel_amphur.addEventListener("change",
         }
 )
 //=========================================
-
-
 
 //=========================================
 var banner = add_IMG("../../img/banner_nb.jpg");
@@ -68,7 +64,7 @@ form1.appendChild(banner)
 //=========================================
 
 var nav = add_NAV(
-    ["#","tools.php","data.php"]
+    ["#","tools.html","data.html"]
     , ["Home","Tools","DATA"]
     ,0 
 );
@@ -82,7 +78,8 @@ var dropdown = add_dropdown("Button Menu" ,links ,texts)
 console.log(dropdown)
 
 //form1.appendChild(dropdown)
-    nav.appendChild(dropdown)
+
+nav.appendChild(dropdown)
 //=========================================
 
 var row1 = spell_element("div","row")
@@ -97,6 +94,7 @@ form1.appendChild(row1)
 
 var nav_def = add_NAV_DEFAULT(
     "SITENAME"
+    ,"#"
     ,["#","tools.php","data.php"]
     , ["Home2","Tools2","DATA2"]
     ,0 
@@ -106,7 +104,6 @@ form1.appendChild(nav_def)
 
 
 //=========================================
-
 var row = add_ROW( 
     [   add_COL("col-sm-3" ,[tx] )
         ,add_COL("col-sm-5" ,[s1] )
@@ -115,7 +112,7 @@ var row = add_ROW(
 form1.appendChild(add_BR())
 form1.appendChild(row)
 form1.style.width = "80%"; 
-
+form1.style.marginLeft = "10%";
 //=========================================
 row = add_ROW( 
     [   add_COL("col-sm-3" ,[add_textNode("เลือกอำเภอ")] )
